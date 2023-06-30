@@ -36,7 +36,7 @@ const PizzaBlock = (props) => {
                 <ul>
                     {
                         types.map(itemNumber => (
-                            <li className={itemNumber === activeType ? 'active': ''}
+                            <li key={itemNumber} className={itemNumber === activeType ? 'active': ''}
                             onClick={() => setActiveType(itemNumber)}>
                                 {typeNames[itemNumber]}</li>
                         ))
