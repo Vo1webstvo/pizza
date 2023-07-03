@@ -1,8 +1,8 @@
 import React from 'react';
 import {useState} from "react";
 
-const Categories = () => {
-  const [active, setActive] = useState(0);
+const Categories = ({onChangeCategories, value}) => {
+
 
   const liArr = [
     {label: 'Все'},
@@ -15,9 +15,9 @@ const Categories = () => {
 
   const renderLi = (arr) => {
     const elems = arr.map((item, i) => {
-      const clazz = i === active ? ' active' : '';
+      const clazz = i === value ? ' active' : '';
       return (
-          <li className={clazz} key={i} onClick={() => setActive(i)}>
+          <li className={clazz} key={i} onClick={() => onChangeCategories(i)}>
             {item.label}
           </li>
       )
