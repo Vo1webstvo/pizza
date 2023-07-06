@@ -1,7 +1,10 @@
 import React from 'react';
-import {useState} from "react";
+import {useSelector, useDispatch} from "react-redux";
+import {setCategory} from "../../redux/slices/filterBtnsSlices";
 
-const Categories = ({onChangeCategories, value}) => {
+const Categories = () => {
+  const categoryValue = useSelector(state => state.filter.value)
+  const dispatch = useDispatch();
 
 
   const liArr = [
@@ -15,9 +18,9 @@ const Categories = ({onChangeCategories, value}) => {
 
   const renderLi = (arr) => {
     const elems = arr.map((item, i) => {
-      const clazz = i === value ? ' active' : '';
+      const clazz = i === categoryValue ? ' active' : '';
       return (
-          <li className={clazz} key={i} onClick={() => onChangeCategories(i)}>
+          <li className={clazz} key={i} onClick={() => dispatch(setCategory(i))}>
             {item.label}
           </li>
       )

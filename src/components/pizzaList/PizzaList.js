@@ -3,10 +3,17 @@ import PizzaBlock from "../pizzaBlock/PizzaBlock";
 import {useHttp} from "../useHttp/useHttp";
 import {useState, useEffect} from "react";
 import {Skeleton} from "../skeleton/Skeleton";
+import {useDispatch, useSelector} from "react-redux";
+import axios from "axios";
+import qs from 'qs'
 
-const PizzaList = ({categoryActive, sortActive, flag, searchValue}) => {
+const PizzaList = () => {
     const [pizzadb, setPizzaDb] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const {value, sort, flag, searchValue, pageCount} = useSelector(state => state.filter)
+    const dispatch = useDispatch();
+
 
 
 
@@ -15,18 +22,17 @@ const PizzaList = ({categoryActive, sortActive, flag, searchValue}) => {
 
     useEffect(() => {
         setLoading(true);
-        const category = categoryActive > 0 ? `category=${categoryActive}` : '';
-        const sort = sortActive.sortProperty;
+        const category = value > 0 ? `category=${value}` : '';
         const search = searchValue ? `search=${searchValue}` : '';  //поиск пицц череззапрос на сервер
 
-        request(
-            `https://649fc7e3ed3c41bdd7a6aea8.mockapi.io/items?${category}&${search}&sortBy=${sort}&order=desc`
+        axios.get(
+            `https://649fc7e3ed3c41bdd7a6aea8.mockapi.io/items?page=${pageCount}&limit=4&${category}&${search}&sortBy=${sort.sortProperty}&order=desc`
         )
         .then(res =>  {
-            setPizzaDb(res);
+            setPizzaDb(res.data);
             setLoading(false);
         } )
-    }, [categoryActive, sortActive, searchValue])
+    }, [value, sort, searchValue, pageCount])
 
 
 
