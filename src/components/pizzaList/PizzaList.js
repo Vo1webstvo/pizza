@@ -1,13 +1,15 @@
 import React from 'react';
 import PizzaBlock from "../pizzaBlock/PizzaBlock";
-import {useHttp} from "../useHttp/useHttp";
 import {useState, useEffect} from "react";
 import {Skeleton} from "../skeleton/Skeleton";
 import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
-import qs from 'qs'
+import qs from 'qs';
+import {useNavigate} from "react-router-dom";
+import {setParams} from "../../redux/slices/filterBtnsSlices";
 
 const PizzaList = () => {
+    const navigate = useNavigate();
     const [pizzadb, setPizzaDb] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -15,10 +17,14 @@ const PizzaList = () => {
     const dispatch = useDispatch();
 
 
-
-
-
-    const {request} = useHttp();
+    //парсим наш параметр c адресной строки, лучше сделать хуком useSearchParams
+    // useEffect(() => {
+    //     if(window.location.search) {
+    //         const params = qs.parse(window.location.search.substring(1));
+    //         // console.log(params)
+    //         dispatch(setParams({...params, sort}))
+    //     }
+    // },[])
 
     useEffect(() => {
         setLoading(true);
@@ -32,16 +38,29 @@ const PizzaList = () => {
             setPizzaDb(res.data);
             setLoading(false);
         } )
-    }, [value, sort, searchValue, pageCount])
+    }, [value, sort.sortProperty, searchValue, pageCount]);
+
+
+    //адресная строка
+    useEffect(() => {
+        const queryString = qs.stringify({
+            sortProperty: sort.sortProperty,
+            value,
+            pageCount,
+        });
+        navigate(`?${queryString}`)
+    }, [value, sort.sortProperty, pageCount])
 
 
 
     const elems = (arr) => {
         return arr.map(item => {
-            const {id, ...items} = item;
+            // const {id, ...items} = item;
 
             return (
-                <PizzaBlock key={id} {...items}/>
+                <PizzaBlock
+                    key={item.id}
+                    {...item}/>
             )
         })
     }
