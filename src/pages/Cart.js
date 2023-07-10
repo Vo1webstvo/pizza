@@ -1,9 +1,21 @@
 import React from 'react';
 import {useSelector, useDispatch} from "react-redux";
+import {clearItems} from "../redux/slices/cartSlice";
 
 import CartItem from "../components/CartItem/CartItem";
+import CartNull from "../components/cartNull/CartNull";
 
 const Cart = () => {
+    const itemsPizza = useSelector(state => state.cart.items);
+    const {items} = useSelector(state => state.cart);
+    const totalCount = items.reduce((sum, item) => sum + item.count, 0) //счетчик пицц в логотипе корзины
+    const finalPrice = items.reduce((sum, item) => (item.count * item.price) + sum, 0)
+    const dispatch = useDispatch();
+
+    if(!finalPrice) {               //если корзина пустая - будет рендериться CartNull
+        return <CartNull/>
+    }
+
     return (
         <div className="wrapper">
             <div className="content">
@@ -28,7 +40,7 @@ const Cart = () => {
                                 </svg>
                                 Корзина
                             </h2>
-                            <div className="cart__clear">
+                            <div className="cart__clear" onClick={()=> dispatch(clearItems())}>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2.5 5H4.16667H17.5" stroke="#B6B6B6" strokeWidth="1.2"
@@ -48,15 +60,17 @@ const Cart = () => {
                         </div>
                         <div className="content__items">
 
-                            <CartItem/>
-
-
-
+                            {
+                                itemsPizza.map(item =>
+                                    <CartItem
+                                    key={item.id}
+                                    {...item} />)
+                            }
                         </div>
                         <div className="cart__bottom">
                             <div className="cart__bottom-details">
-                                <span> Всего пицц: <b>3 шт.</b> </span>
-                                <span> Сумма заказа: <b>900 ₽</b> </span>
+                                <span> Всего пицц: <b>{totalCount} шт.</b> </span>
+                                <span> Сумма заказа: <b>{finalPrice} ₽</b> </span>
                             </div>
                             <div className="cart__bottom-buttons">
                                 <a href="/" className="button button--outline button--add go-back-btn">

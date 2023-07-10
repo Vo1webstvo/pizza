@@ -5,7 +5,6 @@ import PizzaList from "../components/pizzaList/PizzaList";
 import Pagination from "../components/pagination/Pagination";
 
 const Home = ({searchValue}) => {
-    const [numberPage, setNumberPage] = useState(1);
 
     return (
             <div className="content">

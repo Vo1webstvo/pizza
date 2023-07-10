@@ -1,14 +1,14 @@
 import React from 'react';
 
 import {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {addItem} from "../../redux/slices/cartSlice";
 
 const PizzaBlock = ({id,imageUrl, title,types,sizes,price,category,rating}) => {
-    // const {imageUrl, title, types, sizes, price, category, rating } = props;
+    const cartItemCount = useSelector(state => state.cart.items.find(item => item.id === id));
     const dispatch = useDispatch();
 
-    const [count, setCount] = useState(0);
+    const countValue = cartItemCount ? cartItemCount.count : 0 ;    //делаем проверку есть ли что-то в countValue
     const [activeType, setActiveType] = useState(0);
     const [active, setActive] = useState(0);
 
@@ -21,10 +21,9 @@ const PizzaBlock = ({id,imageUrl, title,types,sizes,price,category,rating}) => {
             price,
             imageUrl,
             type: typeNames[activeType],
-            size: active
+            size: sizes[active]
         }
         dispatch(addItem(itemPizza));
-        setCount(count => count + 1);
     }
 
 
@@ -77,7 +76,7 @@ const PizzaBlock = ({id,imageUrl, title,types,sizes,price,category,rating}) => {
                         />
                     </svg>
                     <span>Добавить</span>
-                    <i>{count}</i>
+                    <i>{countValue}</i>
                 </button>
             </div>
         </div>
