@@ -1,0 +1,143 @@
+@media (max-width: 1356px) {
+  .content__items {
+    grid-template-columns: repeat(2, minmax(260px, 300px));
+    justify-content: center;
+  }
+  .content__top{
+    display: block;
+    .sort {
+      margin-top: 20px;
+    }
+  }
+}
+
+@media (max-width: 1140px) {
+  .header {
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+
+      justify-content: center; /* Добавьте это свойство */
+    }
+    .search-elem {
+      width: 200px;
+    }
+  }
+  .button--cart {
+    width: 150px;
+  }
+  .header__cart {
+    width: 150px;
+  }
+  .content__top{
+    display: block;
+    .sort {
+      margin-top: 20px;
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  .content__top {
+    display: block;
+  }
+  .categories {
+    ul {
+      display: grid;
+      grid-auto-flow: column;
+      grid-gap: 1px;
+      li {
+        padding: 13px 10px;
+        text-align: center;
+      }
+    }
+  }
+  .sort__label{
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 721px) {
+
+  .header {
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      a{
+        margin-bottom: 20px;
+      }
+    }
+    .search-elem {
+      width: 300px;
+      margin-bottom: 20px;
+    }
+  }
+  .content__items {
+    grid-template-columns: repeat(2, minmax(240px, 300px));
+    justify-content: center;
+  }
+
+  .categories {
+    ul {
+      display: grid;
+      grid-auto-flow: row;
+      row-gap: 5px;
+      li {
+        padding: 13px 10px;
+        text-align: center;
+      }
+    }
+  }
+  .content__items {
+    grid-template-columns: 260px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 541px) {
+
+  .header__logo {
+    text-align: center;
+    img {
+      display: none;
+    }
+  }
+  .header {
+    .search-elem {
+      width: 200px;
+    }
+  }
+
+  .sort__label{
+    font-size: 12px;
+  }
+
+  .content__title {
+    text-align: center;
+  }
+
+  .content__items {
+    .pizza-block {
+      margin: 0 auto;
+      width: 198px;
+      a{
+        width: 198px;
+        img {
+          width: 150px;
+        }
+      }
+    }
+  }
+
+  .button--add {
+    font-size: 8px;
+    width: 40px;
+    height: 60px;
+    svg {
+      display: none;
+    }
+  }
+
+
+}

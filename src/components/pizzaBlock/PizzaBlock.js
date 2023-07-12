@@ -3,6 +3,7 @@ import React from 'react';
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addItem} from "../../redux/slices/cartSlice";
+import {Link} from "react-router-dom";
 
 const PizzaBlock = ({id,imageUrl, title,types,sizes,price,category,rating}) => {
     const cartItemCount = useSelector(state => state.cart.items.find(item => item.id === id));
@@ -41,11 +42,13 @@ const PizzaBlock = ({id,imageUrl, title,types,sizes,price,category,rating}) => {
 
     return (
         <div className="pizza-block">
-            <img
-                className="pizza-block__image"
-                src={imageUrl}
-                alt="Pizza"
-            />
+            <Link to={`/pizza/${id}`} key={id}>
+                <img
+                    className="pizza-block__image"
+                    src={imageUrl}
+                    alt="Pizza"
+                />
+            </Link>
             <h4 className="pizza-block__title">{title}</h4>
             <div className="pizza-block__selector">
                 <ul>
@@ -75,7 +78,9 @@ const PizzaBlock = ({id,imageUrl, title,types,sizes,price,category,rating}) => {
                             fill="white"
                         />
                     </svg>
-                    <span>Добавить</span>
+
+                        <span>Добавить</span>
+
                     <i>{countValue}</i>
                 </button>
             </div>

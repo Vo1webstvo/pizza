@@ -1,4 +1,5 @@
 .root {
+  margin-top: 10px;
   display: flex;
   justify-content: center;
 
@@ -29,6 +30,27 @@
       a {
         background-color: #fe5f1e;
         color: #fff;
+      }
+    }
+  }
+}
+
+@media (max-width: 541px) {
+  .root {
+    margin-top: 20px;
+    width: 198px;
+    li {
+      margin-left: 7px;
+      width: 35px;
+      height: 35px;
+      a {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35px;
+        height: 35px;
+        font-size: 15px;
       }
     }
   }

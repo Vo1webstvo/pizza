@@ -4,7 +4,7 @@ import {useEffect} from "react";
 import {Skeleton} from "../skeleton/Skeleton";
 import {useDispatch, useSelector} from "react-redux";
 import qs from 'qs';
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {fetchPizza} from "../../redux/slices/pizzaSlice";
 
 const PizzaList = () => {
@@ -52,9 +52,9 @@ const PizzaList = () => {
             // const {id, ...items} = item;
 
             return (
-                <PizzaBlock
-                    key={item.id}
-                    {...item}/>
+                    <PizzaBlock
+                        key={item.id}
+                        {...item}/>
             )
         })
     }

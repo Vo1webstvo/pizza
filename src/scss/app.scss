@@ -24,9 +24,14 @@ body {
   }
 
   &__items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 260px));
+    align-items: center;
+    justify-items: center;
+    row-gap: 25px;
+    column-gap: 30px;
+    justify-content: center;
+
   }
 
   &__top {
@@ -309,3 +314,6 @@ body {
     }
   }
 }
+
+
+@import './media';
