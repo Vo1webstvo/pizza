@@ -31,7 +31,6 @@ body {
     row-gap: 25px;
     column-gap: 30px;
     justify-content: center;
-
   }
 
   &__top {
@@ -61,12 +60,15 @@ body {
     align-items: center;
   }
 
+  .content__items {
+    display: block;
+  }
+
   .content__title {
     display: flex;
     align-items: center;
     font-size: 32px;
-
-    svg {
+    &__item svg {
       position: relative;
       top: -2px;
       width: 30px;
@@ -314,6 +316,5 @@ body {
     }
   }
 }
-
 
 @import './media';

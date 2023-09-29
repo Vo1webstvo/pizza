@@ -3,7 +3,7 @@
     grid-template-columns: repeat(2, minmax(260px, 300px));
     justify-content: center;
   }
-  .content__top{
+  .content__top {
     display: block;
     .sort {
       margin-top: 20px;
@@ -29,7 +29,7 @@
   .header__cart {
     width: 150px;
   }
-  .content__top{
+  .content__top {
     display: block;
     .sort {
       margin-top: 20px;
@@ -52,19 +52,18 @@
       }
     }
   }
-  .sort__label{
+  .sort__label {
     margin-top: 20px;
   }
 }
 
 @media (max-width: 721px) {
-
   .header {
     .container {
       display: flex;
       flex-direction: column;
       align-content: center;
-      a{
+      a {
         margin-bottom: 20px;
       }
     }
@@ -96,7 +95,6 @@
 }
 
 @media (max-width: 541px) {
-
   .header__logo {
     text-align: center;
     img {
@@ -109,7 +107,7 @@
     }
   }
 
-  .sort__label{
+  .sort__label {
     font-size: 12px;
   }
 
@@ -121,7 +119,7 @@
     .pizza-block {
       margin: 0 auto;
       width: 198px;
-      a{
+      a {
         width: 198px;
         img {
           width: 150px;
@@ -138,6 +136,4 @@
       display: none;
     }
   }
-
-
 }
